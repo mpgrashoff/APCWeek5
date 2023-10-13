@@ -37,7 +37,9 @@ namespace {
                                     << "Type inference from a std::initializer list failed.";
     }
 
-    /*
+ // here
+ //
+ //
     TEST(list_constructors, initializer_list) {
         saxion::list lsti{1.0, 2.0, 3.0};
         ASSERT_EQ(lsti.size(), 3) << "Number of elements of a list initialized from std::initializer_list is wrong.";
@@ -45,7 +47,7 @@ namespace {
         ASSERT_FLOAT_EQ(lsti.front(), 1.0) << "The front() element should be: " << 1.0 << ".";
         ASSERT_FLOAT_EQ(lsti.back(), 3.0) << "The back() element should be: " << 3.0 << ".";
     }
-    */
+
     TEST(list_constructors, copy) {
         saxion::list lst(names);
         ASSERT_EQ(lst.size(), names.size());
@@ -386,24 +388,24 @@ namespace {
         }
     }
 
-    /*
-    TEST(list_modifiers, emplace) {
-        saxion::list lst(names);
-        auto element = lst.emplace_back(25, 'a');
-        ASSERT_EQ(lst.size(), names.size() + 1) << "Size should increment";
-        ASSERT_EQ(lst.back(), std::string(25, 'a')) << "The last element should be constructed in-place and equal to: "
-                                                    << std::string(25, 'a');
-        ++element;
-        ASSERT_EQ(element, lst.end()) << "The returned iterator should point to the last element";
+//
+//    TEST(list_modifiers, emplace) {
+//        saxion::list lst(names);
+//        auto element = lst.emplace_back(25, 'a');
+//        ASSERT_EQ(lst.size(), names.size() + 1) << "Size should increment";
+//        ASSERT_EQ(lst.back(), std::string(25, 'a')) << "The last element should be constructed in-place and equal to: "
+//                                                    << std::string(25, 'a');
+//        ++element;
+//        ASSERT_EQ(element, lst.end()) << "The returned iterator should point to the last element";
+//
+//        element = lst.emplace(lst.begin(), 10, 'z');
+//        ASSERT_EQ(lst.size(), names.size() + 2) << "Size should increment";
+//        ASSERT_EQ(lst.front(), std::string(10, 'z')) << "The last element should be constructed in-place and equal to: "
+//                                                     << std::string(10, 'z');
+//
+//        ASSERT_EQ(element, lst.begin()) << "The returned iterator should point to the first element";
+//    }
 
-        element = lst.emplace(lst.begin(), 10, 'z');
-        ASSERT_EQ(lst.size(), names.size() + 2) << "Size should increment";
-        ASSERT_EQ(lst.front(), std::string(10, 'z')) << "The last element should be constructed in-place and equal to: "
-                                                     << std::string(10, 'z');
-
-        ASSERT_EQ(element, lst.begin()) << "The returned iterator should point to the first element";
-    }
-    */
 
     /*
 

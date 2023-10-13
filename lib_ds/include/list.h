@@ -192,25 +192,66 @@ namespace saxion {
             // use node_t as the node type for the iterator
             using node_t = NodeT;
 
-            node_t* current_;
+            const node_t* current_;
 
             // TODO: define the type aliases
             // Remark: the type aliases are the same as for the const_iterator with the exception of the `reference` and `pointer` types
             //         there are no other differences between the const and non-const iterator classes!
+            using value_type = T;
+            using reference = T&;
+            using pointer = T*;
+            using difference_type = std::ptrdiff_t;
+            using iterator_category = std::random_access_iterator_tag;
+            using iterator_concept = std::random_access_iterator_tag;
+
 
             // TODO: constructor that takes a node as an argument and initialized current_ with it
+            list_iterator(const node_t *init)
+            {
+                //todo: probably have to fix memory here its unlikely that this is valid
+                current_ = init;
+            }
 
             // TODO: node() function
+            node_t* node() const { return current_; }
 
             // TODO: pre- and post- increment operators
-
+            list_iterator<T>& operator++() noexcept {
+                ++current_;
+                return *this;
+            }
+            list_iterator<T> operator++(int) noexcept {
+                auto tmp{*this};
+                ++current_;
+                return tmp;
+            }
             // TODO: pre- and post- decrement operators
-
+            list_iterator<T>& operator--() noexcept {
+                --current_;
+                return *this;
+            }
+            list_iterator<T> operator--(int) noexcept {
+                auto tmp{*this};
+                --current_;
+                return tmp;
+            }
             // TODO: dereference operator (*)
-
+            list_iterator<T> operator*() const noexcept {
+                return *current_;
+            }
             // TODO: member access operator (->)
-
+            list_iterator<T> operator->() const noexcept {
+                return current_;
+            }
             // TODO: equality and inequality operators, they can be member or friend functions
+
+            bool operator==(const list_iterator<T>& other) const noexcept {
+                return current_ == other.ptr_;
+            }
+            bool operator!=(const list_iterator<T>& other) const noexcept {
+                return current_ != other.ptr_;
+            }
+
 
         };
 
@@ -229,6 +270,12 @@ namespace saxion {
             // Remark: the type aliases are the same as for the non-const iterator with the exception of the `reference` and `pointer` types
             //         there are no other differences between the const and non-const iterator classes!
 
+            using value_type = T;
+            using reference = const T&;
+            using pointer = const T*;
+            using difference_type = std::ptrdiff_t;
+            using iterator_category = std::random_access_iterator_tag;
+            using iterator_concept = std::random_access_iterator_tag;
             // TODO: constructor that takes a node as an argument and initialized current_ with it
 
             // TODO: node() function
